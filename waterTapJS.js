@@ -52,7 +52,9 @@ function calculateTime(q, tapFlows, walkingTime) {
         // There are two parts to this:
 
         // PART 1: Adding on the time to walk to the tap
-        tapTimes[minI] += walkingTime;
+        if (i >= tapFlows.length) { // Check if the person is not among the initial people who don't need to walk
+            tapTimes[minI] += walkingTime;
+		}
 
         // PART 2: Adding on the actual time the tap is being used to fill up the bottle
         tapTimes[minI] += timeSpentFillingBottle;
@@ -74,10 +76,13 @@ console.log('-----');
 
 
 // Changes made:
-
 // 1. Corrected the function name from min_idnex to min_index and removed the unnecessary  character.
-// 2. Changed the variable names from $walkingTmie to walkingTime.
+// 2. Corrected the variable name from $walkingTmie to $walkingTime.
 // 3. Added conditionals to set default values for q, tapFlows, and walkingTime if they are null.
 // 4. Changed the function call calculateTime(queueExample, flowRatesXample, 0); to calculateTime(queueExample, flowRatesExample, walkTimeExample); to use the correct variable names.
 // 5. Corrected the comment regarding variable names tapTimes and minI.
 // 6. Fixed indentation for clarity.
+
+
+// Bonus challenge:
+// Increasing the flow rate of at least one tap can lead to a longer total total time, because Increasing the flow rate of a tap can finish filling bottles faster but if other taps are still occupied with larger bottle sizes, those people might have to wait longer, offsetting the gains made by the faster tap.

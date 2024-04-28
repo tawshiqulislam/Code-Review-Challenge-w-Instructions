@@ -55,10 +55,13 @@ function calculateTime($q, $tapFlows, $walkingTime) {
 		// There are two parts to this:
 		
 		// PART 1: Adding on the time to walk to the tap
-		$tapTimes[$minI] += $walkingTime;
+		if ($i >= count($tapFlows)) { // Check if the person is not among the initial people who don't need to walk
+			$tapTimes[$minI] += $walkingTime;
+		}
 		
 		// PART 2: Adding on the actual time the tap is being used to fill up the bottle
 		$tapTimes[$minI] += $timeSpentFillingBottle;
+
 
 	}
 
@@ -90,4 +93,8 @@ Changes made:
 5. Added comments to explain the code logic and variables.
 6. Fixed a typo in the comment in the loop explaining the index and value of $tapTimes.
 
+-->
+
+<!-- Bonus challenge:
+Increasing the flow rate of at least one tap can lead to a longer total total time, because Increasing the flow rate of a tap can finish filling bottles faster but if other taps are still occupied with larger bottle sizes, those people might have to wait longer, offsetting the gains made by the faster tap.
 -->
